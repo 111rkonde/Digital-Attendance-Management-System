@@ -7,8 +7,8 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 5432,
-    dialect: 'postgres',
+    port: process.env.DB_PORT || 3306,
+    dialect: 'mysql',
     logging: process.env.NODE_ENV === 'development' ? console.log : false,
     pool: {
       max: 10,
@@ -16,7 +16,7 @@ const sequelize = new Sequelize(
       acquire: 30000,
       idle: 10000
     },
-    // AWS Aurora SQL SSL configuration
+    // AWS RDS SSL configuration (optional)
     dialectOptions: process.env.DB_SSL === 'true' ? {
       ssl: {
         require: true,
